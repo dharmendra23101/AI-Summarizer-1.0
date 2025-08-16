@@ -1,0 +1,245 @@
+:root {
+    --bg: #fff;
+    --text: #202124;
+    --text-light: #5f6368;
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --card: #f8f9fa;
+    --border: #e5e7eb;
+    --success: #10b981;
+    --error: #ef4444;
+    --radius: 5px;
+}
+
+body.dark-theme {
+    --bg: #1f2937;
+    --text: #f9fafb;
+    --text-light: #9ca3af;
+    --card: #374151;
+    --border: #4b5563;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    padding-bottom: 40px;
+}
+
+.fullpage-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.page-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.page-btn {
+    padding: 8px 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.page-btn:hover {
+    background: var(--bg);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.summary-metadata {
+    background: var(--card);
+    padding: 15px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+}
+
+.metadata-row {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.metadata-label {
+    font-weight: 500;
+    width: 100px;
+    color: var(--text-light);
+}
+
+#summaryContent {
+    background: var(--card);
+    padding: 20px;
+    border-radius: var(--radius);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Improved styling for summary content */
+.summary-content {
+    margin-bottom: 20px;
+}
+
+.summary-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.summary-content h1,
+.summary-content h2,
+.summary-content h3 {
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.summary-content h1 {
+    font-size: 20px;
+}
+
+.summary-content h2 {
+    font-size: 18px;
+}
+
+.summary-content h3 {
+    font-size: 16px;
+}
+
+.summary-content p {
+    margin-bottom: 15px;
+}
+
+/* Better bullet point styling */
+.summary-content ul {
+    list-style: none;
+    margin-left: 5px;
+    margin-bottom: 15px;
+}
+
+.summary-content ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+.summary-content ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* Numbered list styling */
+.summary-content ol {
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+.summary-content ol li {
+    margin-bottom: 8px;
+}
+
+/* Glossary styling */
+.glossary {
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+    margin-top: 20px;
+}
+
+.glossary-title {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.glossary-content {
+    font-size: 15px;
+}
+
+.glossary-content dt {
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.glossary-content dd {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: var(--error);
+    text-align: center;
+    padding: 20px;
+    font-weight: 500;
+}
+
+/* Loading animation */
+.loading {
+    text-align: center;
+    color: var(--text-light);
+}
+
+/* Print styles */
+@media print {
+    .page-actions, .theme-toggle {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        --text: black;
+        --card: white;
+        --border: #ddd;
+    }
+    
+    .fullpage-container {
+        max-width: 100%;
+        padding: 0;
+    }
+}

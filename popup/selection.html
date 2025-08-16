@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selected Area Summary</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: auto;
+            min-height: 100vh;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 12px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+        
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-robot"></i></div>
+                <h1>Selected Area Summary</h1>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggle" class="icon-action" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="output-container">
+            <div class="loader" id="loader" style="display: flex;">
+                <div class="spinner"></div>
+                <div class="loading-text">Generating summary...</div>
+            </div>
+            
+            <div id="output" class="output-content"></div>
+        </div>
+        
+        <div class="action-bar">
+            <button id="backBtn" class="secondary-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <div class="secondary-actions">
+                <button id="copyBtn" class="icon-btn" disabled title="Copy to clipboard">
+                    <i class="fas fa-copy"></i>
+                </button>
+                <button id="saveBtn" class="icon-btn" disabled title="Save summary">
+                    <i class="fas fa-bookmark"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>AI Summarizer 1.0 | Developed by Dharmendra Dhruw | <a href="mailto:dkbob3337@gmail.com">dkbob3337@gmail.com</a></p>
+        </div>
+    </div>
+    
+    <script src="selection.js"></script>
+</body>
+</html>

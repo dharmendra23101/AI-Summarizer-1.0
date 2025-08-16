@@ -1,0 +1,20 @@
+MultiLangSummarizer/
+├── manifest.json                
+├── background.js               
+├── content.js                 
+├── .env.json                   
+├── fullpage.html             
+├── fullpage.css              
+├── fullpage.js                
+├── area-selector.js                  
+├── popup/                      
+│   ├── popup.html     
+│   ├── popup.css                         
+│   ├── popup.js                             
+│   ├── selector.html                           
+│   └── selector.js                   
+├── icons/   
+│   ├── create-icon.js                      
+│   └── icon128.png             
+└── README.md                 
+└── present.txt                  

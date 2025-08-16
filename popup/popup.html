@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Summarizer 1.0</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-robot"></i></div>
+                <h1>AI Summarizer 1.0</h1>
+            </div>
+            <div class="header-actions">
+                <button id="expandBtn" class="icon-action" title="Toggle size">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <button id="themeToggle" class="icon-action" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <nav class="tab-nav">
+            <button class="nav-btn active" data-tab="summary">
+                <i class="fas fa-magic"></i>
+                <span>Summarize</span>
+            </button>
+            <button class="nav-btn" data-tab="saved">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
+            </button>
+            <button class="nav-btn" data-tab="settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </button>
+        </nav>
+
+        <div id="summary-tab" class="tab-content active">
+            <div class="options-panel">
+                <div class="option-group">
+                    <label class="option-label">Language</label>
+                    <select id="lang" class="option-select">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ja">Japanese</option>
+                        <option value="ru">Russian</option>
+                        <option value="ar">Arabic</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="it">Italian</option>
+                        <option value="nl">Dutch</option>
+                        <option value="ko">Korean</option>
+                        <option value="tr">Turkish</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label class="option-label">Length</label>
+                    <select id="summaryLength" class="option-select">
+                        <option value="brief">Brief</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="detailed">Detailed</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label class="option-label">Style</label>
+                    <select id="summaryStyle" class="option-select">
+                        <option value="standard">Standard</option>
+                        <option value="bullet">Bullet Points</option>
+                        <option value="academic">Academic</option>
+                        <option value="simple">Simple</option>
+                    </select>
+                </div>
+                
+                <div class="option-group checkbox-group">
+                    <label class="option-label checkbox-label">
+                        <input type="checkbox" id="includeGlossary" checked>
+                        <span>Include Glossary</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <div class="primary-actions">
+                    <button id="summarizeBtn" class="primary-btn">
+                        <i class="fas fa-magic"></i> Summarize
+                    </button>
+                    <button id="selectAreaBtn" class="primary-btn">
+                        <i class="fas fa-crop-alt"></i> Select Area
+                    </button>
+                </div>
+                <div class="secondary-actions">
+                    <button id="copyBtn" class="icon-btn" disabled title="Copy to clipboard">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <button id="saveBtn" class="icon-btn" disabled title="Save summary">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                    <button id="openTabBtn" class="icon-btn" disabled title="Open in new tab">
+                        <i class="fas fa-external-link-alt"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="output-container">
+                <div class="loader" id="loader" style="display: none;">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Generating summary...</div>
+                </div>
+                
+                <div id="output" class="output-content"></div>
+            </div>
+        </div>
+
+        <div id="saved-tab" class="tab-content">
+            <div class="saved-header">
+                <h3>Saved Summaries</h3>
+                <div class="saved-filter">
+                    <select id="savedSort" class="mini-select">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+            <div id="savedSummaries" class="saved-list"></div>
+        </div>
+
+        <div id="settings-tab" class="tab-content">
+            <div class="settings-section">
+                <h3 class="settings-title">API Key</h3>
+                <div class="settings-card">
+                    <div class="input-group">
+                        <input type="password" id="apiKey" placeholder="Enter your Gemini API Key">
+                        <button id="updateApiKey" class="action-btn">Update</button>
+                    </div>
+                    <div id="apiStatus" class="api-status"></div>
+                    <div class="settings-help">
+                        You need a Gemini API key to use this extension. 
+                        <a href="https://ai.google.dev/" target="_blank">Get one here</a>.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h3 class="settings-title">Default Settings</h3>
+                <div class="settings-card">
+                    <div class="settings-row">
+                        <label class="settings-label">Language</label>
+                        <select id="defaultLang" class="settings-select"></select>
+                    </div>
+                    <div class="settings-row">
+                        <label class="settings-label">Summary Length</label>
+                        <select id="defaultLength" class="settings-select">
+                            <option value="brief">Brief</option>
+                            <option value="medium">Medium</option>
+                            <option value="detailed">Detailed</option>
+                        </select>
+                    </div>
+                    <div class="settings-row">
+                        <label class="settings-label">Include Glossary</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="defaultGlossary">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-row">
+                        <label class="settings-label">Default Size</label>
+                        <select id="defaultSize" class="settings-select">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                    <button id="saveSettings" class="primary-btn full-width-btn">Save Settings</button>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h3 class="settings-title">About</h3>
+                <div class="settings-card">
+                    <div class="about-info">
+                        <p><strong>AI Summarizer 1.0</strong></p>
+                        <p>Version 1.15.08.2025</p>
+                        <p>Created by Dharmendra Dhruw</p>
+                        <p><a href="mailto:dkbob3337@gmail.com">dkbob3337@gmail.com</a></p>
+                        <p>Powered by Google Gemini AI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="resize-handle" id="resizeHandle">
+            <i class="fas fa-grip-lines"></i>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

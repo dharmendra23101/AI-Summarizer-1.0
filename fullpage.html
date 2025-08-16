@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Summarizer 1.0 - Full Page View</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fullpage.css">
+    <script src="fullpage.js" defer></script>
+</head>
+<body>
+    <div class="fullpage-container">
+        <div class="page-header">
+            <div class="page-title">AI Summary</div>
+            <div class="page-actions">
+                <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="copyBtn" class="page-btn">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+                <button id="printBtn" class="page-btn">
+                    <i class="fas fa-print"></i> Print
+                </button>
+            </div>
+        </div>
+        
+        <div class="summary-metadata">
+            <div class="metadata-row">
+                <div class="metadata-label">Source:</div>
+                <div id="pageUrl"></div>
+            </div>
+            <div class="metadata-row">
+                <div class="metadata-label">Title:</div>
+                <div id="pageTitle"></div>
+            </div>
+            <div class="metadata-row">
+                <div class="metadata-label">Language:</div>
+                <div id="summaryLanguage"></div>
+            </div>
+            <div class="metadata-row">
+                <div class="metadata-label">Generated:</div>
+                <div id="summaryDate"></div>
+            </div>
+        </div>
+        
+        <div id="summaryContent">
+            <p class="loading">Loading summary...</p>
+        </div>
+        
+        <div class="footer">
+            <p>AI Summarizer 1.0 | Developed by Dharmendra Dhruw | <a href="mailto:dkbob3337@gmail.com">dkbob3337@gmail.com</a></p>
+        </div>
+    </div>
+</body>
+</html>
